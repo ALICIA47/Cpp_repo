@@ -64,3 +64,21 @@ int main(){
 }
 
 ```
+
+---
+
+- 按指针传递：与引用传递类似，但明确表达了内存地址的概念，在与旧的C语言代码互操作或者要处理NULL指针的情况下合适
+
+```cpp
+
+void increment(int* value){
+    if(value){
+        *value+=1;//修改指向的值
+    }
+}
+int main(){
+    int a=5;
+    increment(&a);//a变成6了
+}
+
+```
