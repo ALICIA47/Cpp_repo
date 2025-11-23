@@ -137,3 +137,59 @@ int main(){
 - 静态成员：静态成员变量和函数由于在编译时具有确定的值，可以作为默认参数
 
 - 版本差异：不同编译器和C++版本可能在实施这些规则时有所不同
+
+---
+
+## 4、函数参数的类型匹配与转换
+
+- 函数参数的类型匹配：实参必须与形参类型匹配
+
+```cpp
+
+void display(int value){
+    std::cout<<value<<std::endl;
+}
+int main(){
+    int num=10;
+    display(num);//类型匹配无须转换
+}
+
+```
+
+---
+
+- 自动类型转换
+
+```cpp
+
+void display(double value){
+    std::cout<<value<<std::endl;
+}
+int main(){
+    int num=10;
+    display(num);//int自动转换为double
+}
+
+```
+
+---
+
+- 强制类型转换
+
+```cpp
+
+void display(double value){
+    std::cout<<value<<std::endl;
+}
+int main(){
+    char ch='A';
+    display(static_cast<double>(ch));//显式转换
+}
+
+```
+
+- 模板和函数重载中的类型转换：C++的模板和函数重载机制允许相同名称的函数处理不同类型的参数，这些情况下编译器根据传递的参数类型来选择最合适的函数版本
+
+---
+
+## 5、main函数传参
