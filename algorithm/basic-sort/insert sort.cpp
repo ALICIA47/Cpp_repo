@@ -17,8 +17,8 @@ public:
                     num[j]=temp;
                 }   
             }
-        return num;
         }
+        return num;
     }
 };
 
