@@ -7,15 +7,17 @@
 using namespace std;
 class solution{
 public:
-    vector<int>insertsort(vector<int>& num){
+    vector<int>choosesort(vector<int>& num){
         int n=num.size();
-        for(int i=1;i<n;i++){
-            for(int j=i;j>0;j--){
-                if(num[j]<num[j-1]){
-                    int temp=num[j-1];
-                    num[j-1]=num[j];
-                    num[j]=temp;
-                }   
+        for(int i=0;i<n;i++){
+            int min=i;
+            for(int j=i+1;j<n;j++){
+                if(num[j]<num[min])min=j;
+            }
+            if(min!=i){
+                int temp=num[i];
+                num[i]=num[min];
+                num[min]=temp;
             }
         }
         return num;
@@ -39,7 +41,7 @@ int main(){
     }
     cout<<endl;
     solution sol;
-    vector<int>res=sol.insertsort(num);
+    vector<int>res=sol.choosesort(num);
     cout<<"排序为：";
     int r=res.size();
     for(int i=0;i<r;i++){
