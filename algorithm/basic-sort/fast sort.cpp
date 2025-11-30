@@ -5,22 +5,30 @@
 #include<windows.h>
 #include<conio.h>
 using namespace std;
-class solution{
+class Solution{
 public:
-    vector<int>choosesort(vector<int>& num){
-        int n=num.size();
-        for(int i=0;i<n;i++){
-            int min=i;
-            for(int j=i+1;j<n;j++){
-                if(num[j]<num[min])min=j;
+    void quicksort(vector<int>& num){
+        qsort(num,0,(int)num.size()-1);
+    }
+private:
+    void qsort(vector<int>&num,int l,int r){
+        if(l>=r)return;
+        int i=l,j=r,pos=num[l];
+        while(i<j){
+            while(i<j&&num[j]>=pos)j--;
+            if(i<j){
+                num[i]=num[j];
+                i++;
             }
-            if(min!=i){
-                int temp=num[i];
-                num[i]=num[min];
-                num[min]=temp;
-            }
+            while(i<j&&num[i]<=pos)i++;
+            if(i<j){
+                num[j]=num[i];
+                j--;
+            }    
         }
-        return num;
+        num[i]=pos;
+        qsort(num,l,i-1);
+        qsort(num,i+1,r);
     }
 };
 
@@ -40,12 +48,12 @@ int main(){
         cout<<num[i]<<" ";
     }
     cout<<endl;
-    solution sol;
-    vector<int>res=sol.choosesort(num);
+    Solution sol;
+    sol.quicksort(num);
     cout<<"排序为：";
-    int r=res.size();
+    int r=num.size();
     for(int i=0;i<r;i++){
-        cout<<res[i]<<" ";
+        cout<<num[i]<<" ";
     }
     cout<<endl;
     cout<<"按 Enter 退出...";

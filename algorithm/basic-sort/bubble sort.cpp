@@ -12,7 +12,7 @@ public:
         bool whetherswap;//优化冒泡判断是否交换
         for(int i=0;i<n-1;i++){//i=n-1时必然已经排序完成
             whetherswap=false;
-            for(int j=0;j<n-i-1;j++){//若让j<n-i则可能会有j=n-i-1,j+1=n-i导致越界溢出
+            for(int j=0;j<n-i-1;j++){//若让j<n-i则可能会有j=n-i-1,j+1=n-i导致越界溢出 
                 if(num[j+1]<num[j]){
                     int temp=num[j];
                     num[j]=num[j+1];
