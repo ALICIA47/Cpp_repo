@@ -5,30 +5,29 @@
 #include<windows.h>
 #include<conio.h>
 using namespace std;
+
 class Solution{
 public:
-    void quicksort(vector<int>& num){
-        qsort(num,0,(int)num.size()-1);
+    void guibingsort(vector<int>& num){  
+        mergeSort(num,0,(int)num.size()-1);
     }
 private:
-    void qsort(vector<int>&num,int l,int r){
-        if(l>=r)return;
-        int i=l,j=r,pos=num[l];
-        while(i<j){
-            while(i<j&&num[j]>=pos)j--;
-            if(i<j){
-                num[i]=num[j];
-                i++;
-            }
-            while(i<j&&num[i]<=pos)i++;
-            if(i<j){
-                num[j]=num[i];
-                j--;
-            }    
-        }
-        num[i]=pos;
-        qsort(num,l,i-1);
-        qsort(num,i+1,r);
+    void mergeSort(vector<int>& num,int l,int r){
+        if(l>=r) return;
+        int mid = l + (r-l)/2;               // 防溢出
+        mergeSort(num,l,mid);                // 左半
+        mergeSort(num,mid+1,r);              // 右半
+        merge(num,l,mid,r);                  // 合并
+    }
+    void merge(vector<int>& num,int l,int mid,int r){
+        vector<int> tmp(r-l+1);              // 一次性申请
+        int i = l, j = mid+1, k = 0;
+        while(i<=mid && j<=r)
+            tmp[k++] = (num[i]<=num[j]) ? num[i++] : num[j++];
+        while(i<=mid) tmp[k++] = num[i++];
+        while(j<=r)   tmp[k++] = num[j++];
+        for(k=0;k<tmp.size();++k)            // 拷回原数组
+            num[l+k] = tmp[k];
     }
 };
 
@@ -49,7 +48,7 @@ int main(){
     }
     cout<<endl;
     Solution sol;
-    sol.quicksort(num);
+    sol.guibingsort(num); 
     cout<<"排序为：";
     int r=num.size();
     for(int i=0;i<r;i++){

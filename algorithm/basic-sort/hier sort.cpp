@@ -6,31 +6,28 @@
 #include<conio.h>
 using namespace std;
 class Solution{
-public:
-    void quicksort(vector<int>& num){
-        qsort(num,0,(int)num.size()-1);
-    }
-private:
-    void qsort(vector<int>&num,int l,int r){
-        if(l>=r)return;
-        int i=l,j=r,pos=num[l];
-        while(i<j){
-            while(i<j&&num[j]>=pos)j--;
-            if(i<j){
-                num[i]=num[j];
-                i++;
+    public:
+        void hiersort(vector<int>& num){ 
+            int n = (int)num.size();
+            // 1. 生成 Knuth 增量序列 1, 4, 13, 40, ...
+            int h = 1;
+            while (h < n / 3) h = 3 * h + 1;      // 最大增量不超过 n/3
+    
+            // 2. 递减增量做 g-排序（插入排序的变体）
+            while (h >= 1) {
+                for (int i = h; i < n; ++i) {     // 对每个元素，按增量 h 做插入
+                    int temp = num[i];
+                    int j = i - h;
+                    while (j >= 0 && num[j] > temp) {
+                        num[j + h] = num[j];
+                        j -= h;
+                    }
+                    num[j + h] = temp;
+                }
+                h /= 3;                           // Knuth 减量
             }
-            while(i<j&&num[i]<=pos)i++;
-            if(i<j){
-                num[j]=num[i];
-                j--;
-            }    
         }
-        num[i]=pos;
-        qsort(num,l,i-1);
-        qsort(num,i+1,r);
-    }
-};
+    };
 
 int main(){
     SetConsoleOutputCP(CP_UTF8);
@@ -49,7 +46,7 @@ int main(){
     }
     cout<<endl;
     Solution sol;
-    sol.quicksort(num);
+    sol.hiersort(num);
     cout<<"排序为：";
     int r=num.size();
     for(int i=0;i<r;i++){
