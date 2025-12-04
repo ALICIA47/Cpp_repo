@@ -213,3 +213,49 @@ main函数可以接收:int argc和char* argv[]
 ---
 
 ## 6、参数的生命周期和存储位置
+
+- 命令行输入：当用户在命令行中输入命令并执行程序时，OS会将整个命令行字符串(包括程序名称和参数)处理为一系列字符串。每个参数为一个字符串由空格分隔
+
+- 内存分配：OS为这些字符串及其数组分配内存空间，通常它们位于堆栈区域，它们在程序开始前执行分配并且随着程序结束而被释放
+
+- 参数传递：OS将命令行参数的数量(argc)和指向这些参数的指针数组(argv)传递给程序的main函数，argv是一个指向字符指针的数组，其中每个元素都指向一个参数字符串，argv[0]通常是程序的名称而argv[1]~argv[argc-1]是命令行提供的参数
+
+- 生命周期管理：从main函数开始到程序结束，这些命令行参数都是可访问的，它们在程序整个运行周期内都位于内存中，程序一旦终止OS就会清理这些分配的内存空间
+
+---
+
+## 7、函数传参的高阶应用
+
+**函数作为参数传递**
+
+```cpp
+//函数指针
+#include<iostream>
+void display(int x){
+    std::cout<<"Value"<<x<<std::endl;
+}
+void executeFunction(void(*func)(int),int value){
+    func(value);
+}
+int main(){
+    executeFunction(display,5);
+    return 0;
+}
+```
+
+---
+
+**std::function**：一种允许封装几乎任何类型的可调用实体
+
+```cpp
+#include<functional>
+#include<iostream>
+void executeFunction(std::function<void(int)>func,int value){
+    func(value);
+}
+int main(){
+    std::function<void(int)>func=[(int x)]{std::cout<<"Lambda:"<<x<<std::endl;};
+    execute(func,10);
+    return 0;
+}
+```
