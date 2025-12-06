@@ -261,5 +261,93 @@ int main(){
 ```
 
 ---
-
 **容器作为参数传递**
+
+- 传统数组
+
+```cpp
+
+#include<iostream>
+void processArray(int *arr,int size){
+    for(int i=0;i<size;++i){
+        std::cout<<arr[i]<<" ";
+    }
+    std::cout<<std::endl;
+}
+int main(){
+    int data[]={1,2,3,4,5};
+    processArray(data,5);
+    return 0;
+} 
+
+```
+
+简单但是没有边界检查
+
+---
+
+- 使用std::array
+
+```cpp
+#include<array>
+#include<iostream>
+
+void processArray(const std::array<int, 5>&arr){
+    for(int i:arr){
+        std::cout<<i<<" ";
+    }
+    std::cout<<endl;
+}
+int main(){
+    std::array<int, 5>data={1,2,3,4,5};
+    processArray(data);
+    return 0;
+}
+```
+数组大小被固定
+
+---
+
+- 使用std::vector
+
+```cpp
+#include<vector>
+#include<iostream>
+void processVector(const std::vectro<int>&vec){
+    for(int i:vec){
+        std::cout<<i<<" ";
+    }
+    std::cout<<endl;
+}
+int main(){
+    std::vector<int> data={1,2,3,4,5};
+    processVector(data);
+    return 0;
+}
+```
+有动态大小的管理
+
+---
+
+- 使用std::span
+
+```cpp
+
+#include<span>
+#include<iostream>
+#include<vector>
+
+void processSpan(const std::span<int> data){
+    for(int i:data){
+        std::cout<<i<<" "；
+    }
+    std::cout<<endl;
+}
+int main(){
+    std::vector<int> vec={1,2,3,4,5};
+    std::span<int> span=vec;
+    processSpan(span);
+    return 0;
+}
+```
+C++20的新特性span(视图)：易创建、有范围检查、传递成本低
