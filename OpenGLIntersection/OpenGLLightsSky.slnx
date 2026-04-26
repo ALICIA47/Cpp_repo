@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="OpenGLLightsSky/OpenGLLightsSky.vcxproj" Id="c65126ae-6d85-40e4-9324-1f24349b7b05" />
+</Solution>

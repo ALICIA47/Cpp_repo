@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="OpenGLNatureScene/OpenGLNatureScene.vcxproj" Id="4d4dbd7b-bf62-432b-818d-413a55c42584" />
+</Solution>

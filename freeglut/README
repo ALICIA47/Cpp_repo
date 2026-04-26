@@ -1,0 +1,16 @@
+freeglut v3.8.0 for MS VisualStudio
+
+This package contains libs and DLLs for MS VisualStudio (VC++).
+Please check out https://www.songho.ca/opengl/gl_freeglut.html for details.
+
+32-bit
+======
+Compile Search DIR: .\freeglut\include
+Link Search DIR   : .\freeglut\lib
+Link Option       : /D FREEGLUT_STATIC
+
+64-bit
+======
+Compile Search DIR: .\freeglut\include
+Link Search DIR   : .\freeglut\lib\x64
+Link Option       : /D FREEGLUT_STATIC
