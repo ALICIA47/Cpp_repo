@@ -130,9 +130,8 @@ void drawAllBricks() {
         0.1f, 0.1f, 0.1f, 0.3f, 0.15f, 0.3f, 2, 2);
 }
 
-// ------------------------------------------------------------
-// Plush toys (bigger, thrown casually)
-// ------------------------------------------------------------
+// Plush toys
+
 void drawBigTeddy(float x, float y, float z, float rotY, float rotX, float rotZ) {
     glPushMatrix();
     glTranslatef(x, y, z);
@@ -194,7 +193,7 @@ void drawPlushToys() {
     drawBigBunny(6.5f, roomBottom + 0.01f, -7.5f, -45.0f, 20.0f, 120.0f);
 }
 
-// ------------------------------------------------------------
+
 // Bed (2x bigger, 1.5m wide visually)
 // ------------------------------------------------------------
 void drawBed() {
@@ -233,9 +232,9 @@ void drawBed() {
     glPopMatrix();
 }
 
-// ------------------------------------------------------------
-// Wardrobe (2x bigger, double-door)
-// ------------------------------------------------------------
+
+// Wardrob
+
 void drawWardrobe() {
     float wbX = 7.1f;
     float wbZ = -11.4f;
@@ -271,9 +270,9 @@ void drawWardrobe() {
     glPopMatrix();
 }
 
-// ------------------------------------------------------------
+
 // Door (right‑front corner, closed)
-// ------------------------------------------------------------
+
 void drawDoor() {
     // Door placed against the right wall (X = roomRight), near front wall (Z = roomFront)
     float doorWidth = 1.2f;    // width along Z

@@ -1,4 +1,3 @@
-
 #include <GL/freeglut.h>
 #include <iostream>
 #include <vector>
@@ -107,7 +106,7 @@ HitInfo intersectScene(const Ray& r) {
     return closest;
 }
 
-// ---------- Improved shadow test (avoids false self-shadowing) ----------
+//Improved shadow test(avoids false self-shadowing)
 bool isInShadow(const Vec3& pt, const Vec3& norm, const Light& light) {
     Vec3 ldir = (light.pos - pt).normalize();
     Vec3 origin = pt + norm * 0.03f + ldir * 0.01f;
@@ -120,7 +119,7 @@ bool isInShadow(const Vec3& pt, const Vec3& norm, const Light& light) {
     return false;
 }
 
-// ---------- Lighting with specular highlights ----------
+//Lighting with specular highlights
 Vec3 calcLight(const HitInfo& hit, const Vec3& vdir, int depth) {
     if (depth <= 0) return Vec3(0.12f, 0.12f, 0.12f);
     Vec3 amb(0.2f, 0.2f, 0.2f);
@@ -157,7 +156,7 @@ Vec3 calcLight(const HitInfo& hit, const Vec3& vdir, int depth) {
     return Vec3(clamp(col.x, 0, 1), clamp(col.y, 0, 1), clamp(col.z, 0, 1));
 }
 
-// ---------- Rendering ----------
+//Rendering
 const int W=800, H=600;
 unsigned char img[H][W][3];
 
