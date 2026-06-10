@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.16)
+
+project(cpp_media-kit LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+include_directories(include)
+
+add_library(cmedia_logger
+    src/logger.cpp
+)
+
+add_executable(logger_demo
+    examples/logger_demo.cpp
+)
+
+target_link_libraries(logger_demo
+    cmedia_logger
+)
