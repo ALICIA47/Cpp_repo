@@ -5,7 +5,8 @@ project(cpp_media-kit LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include_directories(include)
+#include_directories(include)
+target_include_directories(cmedia_logger PUBLIC include)
 
 add_library(cmedia_logger
     src/logger.cpp
